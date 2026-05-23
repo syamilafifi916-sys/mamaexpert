@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="ms">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Kalkulator tarikh bersalin (EDD) percuma — kira tarikh jangkaan bersalin kau berdasarkan tarikh haid terakhir. Tepat dan mudah digunakan." />
+  <title>Kalkulator Tarikh Bersalin EDD | MamaExpert</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../css/style.css" />
+  <link rel="stylesheet" href="../css/kalkulator.css" />
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav class="nav" id="nav">
+    <div class="nav-inner">
+      <a href="../index.html" class="logo">
+        <span class="logo-icon">🌸</span>
+        <span class="logo-text">Mama<strong>Expert</strong></span>
+      </a>
+      <ul class="nav-links">
+        <li><a href="tracker.html">Baby Tracker</a></li>
+        <li><a href="nama-bayi.html">Nama Bayi</a></li>
+        <li><a href="kalkulator.html" style="color:var(--rose)">Kalkulator EDD</a></li>
+        <li><a href="blog/">Blog</a></li>
+      </ul>
+      <a href="../index.html#ebook" class="btn btn-nav">Ebook Percuma</a>
+      <button class="burger" id="burger" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+    <div class="mobile-menu" id="mobileMenu">
+      <a href="tracker.html">Baby Tracker</a>
+      <a href="nama-bayi.html">Nama Bayi</a>
+      <a href="kalkulator.html">Kalkulator EDD</a>
+      <a href="blog/">Blog</a>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section class="kalk-hero">
+    <div class="container">
+      <div class="kalk-hero-inner">
+        <div class="kalk-hero-text">
+          <div class="hero-badge">📅 Kalkulator EDD</div>
+          <h1>Kira Tarikh<br /><em>Jangkaan Bersalin</em></h1>
+          <p>Masukkan tarikh haid terakhir kau dan kami akan kira tarikh jangkaan bersalin (EDD), minggu kehamilan semasa, dan trimester kau sekarang.</p>
+          <div class="accuracy-badge">
+            <span>✅</span>
+            <span>Berdasarkan formula Naegele yang digunakan oleh doktor seluruh dunia</span>
+          </div>
+        </div>
+
+        <!-- CALCULATOR CARD -->
+        <div class="calc-card">
+          <div class="calc-step" id="step1">
+            <h3>Tarikh Haid Terakhir (LMP)</h3>
+            <p class="calc-desc">Masukkan hari pertama haid terakhir kau</p>
+            <input type="date" id="lmpDate" class="date-input" />
+            <div class="cycle-row">
+              <label>Purata kitaran haid:</label>
+              <div class="cycle-options">
+                <button class="cycle-btn active" data-days="28">28 hari</button>
+                <button class="cycle-btn" data-days="30">30 hari</button>
+                <button class="cycle-btn" data-days="35">35 hari</button>
+                <button class="cycle-btn custom" data-days="custom">Lain</button>
+              </div>
+              <input type="number" id="customCycle" class="custom-cycle hidden" placeholder="Hari" min="21" max="45" />
+            </div>
+            <button class="btn btn-primary calc-btn" onclick="calculateEDD()">
+              Kira Tarikh Bersalin 🗓️
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- RESULT SECTION -->
+  <section class="result-section hidden" id="resultSection">
+    <div class="container">
+
+      <div class="result-hero-card">
+        <div class="result-hero-left">
+          <div class="result-label">Tarikh Jangkaan Bersalin</div>
+          <div class="result-edd" id="resultEDD">—</div>
+          <div class="result-day" id="resultDay">—</div>
+        </div>
+        <div class="result-hero-right">
+          <div class="result-stat">
+            <span class="rs-icon">🤰</span>
+            <div>
+              <div class="rs-label">Minggu kehamilan</div>
+              <div class="rs-val" id="resultWeeks">—</div>
+            </div>
+          </div>
+          <div class="result-stat">
+            <span class="rs-icon">📊</span>
+            <div>
+              <div class="rs-label">Trimester</div>
+              <div class="rs-val" id="resultTrimester">—</div>
+            </div>
+          </div>
+          <div class="result-stat">
+            <span class="rs-icon">⏳</span>
+            <div>
+              <div class="rs-label">Baki hari</div>
+              <div class="rs-val" id="resultDaysLeft">—</div>
+            </div>
+          </div>
+          <div class="result-stat">
+            <span class="rs-icon">🍀</span>
+            <div>
+              <div class="rs-label">Peratus selesai</div>
+              <div class="rs-val" id="resultPct">—</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Progress bar -->
+      <div class="preg-progress-card">
+        <div class="preg-prog-header">
+          <span>Perjalanan kehamilan kau</span>
+          <span id="progLabel">—</span>
+        </div>
+        <div class="preg-prog-bar">
+          <div class="preg-prog-fill" id="progFill" style="width:0%"></div>
+          <div class="tri-marker" style="left:30%"><span>T2</span></div>
+          <div class="tri-marker" style="left:65%"><span>T3</span></div>
+        </div>
+        <div class="preg-prog-labels">
+          <span>Minggu 1</span>
+          <span>Minggu 13</span>
+          <span>Minggu 27</span>
+          <span>Minggu 40</span>
+        </div>
+      </div>
+
+      <!-- Timeline -->
+      <div class="timeline-card">
+        <h3>📅 Tarikh Penting Kehamilan Kau</h3>
+        <div class="timeline" id="timeline">
+          <!-- filled by JS -->
+        </div>
+      </div>
+
+      <!-- Trimester info -->
+      <div class="trimester-cards" id="trimesterInfo">
+        <!-- filled by JS -->
+      </div>
+
+      <!-- CTA -->
+      <div class="result-cta">
+        <div class="result-cta-text">
+          <h3>Nak tahu perkembangan baby minggu ini?</h3>
+          <p>Guna Baby Tracker kami untuk tengok saiz baby, milestone, dan tips penjagaan untuk minggu <span id="ctaWeek">—</span>.</p>
+        </div>
+        <a href="#" id="trackerLink" class="btn btn-primary">Buka Baby Tracker →</a>
+      </div>
+
+      <!-- Recalculate -->
+      <div style="text-align:center; margin-top: 24px;">
+        <button class="btn btn-ghost" onclick="resetCalc()">🔄 Kira Semula</button>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="faq-section">
+    <div class="container">
+      <div class="section-header">
+        <p class="section-tag">Soalan Lazim</p>
+        <h2 class="section-title">Tentang <em>Tarikh Bersalin</em></h2>
+      </div>
+      <div class="faq-grid">
+        <div class="faq-item">
+          <h4>Apakah EDD?</h4>
+          <p>EDD bermaksud Estimated Due Date — tarikh jangkaan bersalin. Ia dikira berdasarkan tarikh haid terakhir menggunakan formula Naegele yang digunakan oleh doktor seluruh dunia.</p>
+        </div>
+        <div class="faq-item">
+          <h4>Berapa tepat kalkulator ini?</h4>
+          <p>Kalkulator ini memberikan anggaran berdasarkan kitaran haid kau. Hanya 5% bayi lahir tepat pada EDD. Kebanyakan baby lahir antara minggu 38–42.</p>
+        </div>
+        <div class="faq-item">
+          <h4>Apa itu LMP?</h4>
+          <p>LMP bermaksud Last Menstrual Period — tarikh pertama haid terakhir kau. Ini adalah titik rujukan utama untuk mengira umur kehamilan.</p>
+        </div>
+        <div class="faq-item">
+          <h4>Bila perlu pergi ke doktor?</h4>
+          <p>Sebaik sahaja kau tahu kau mengandung! Temujanji pertama biasanya antara minggu 8–10. Doktor akan sahkan EDD melalui ultrasound.</p>
+        </div>
+        <div class="faq-item">
+          <h4>Bagaimana jika kitaran haid tidak teratur?</h4>
+          <p>Jika kitaran haid kau tidak teratur, EDD yang dikira mungkin kurang tepat. Ultrasound pertama (minggu 8–12) adalah cara terbaik untuk sahkan tarikh sebenar.</p>
+        </div>
+        <div class="faq-item">
+          <h4>Adakah semua baby lahir pada EDD?</h4>
+          <p>Tidak. Hanya 5% baby lahir tepat pada EDD. Kebanyakan baby dianggap full term jika lahir antara minggu 37–42. Jangan risau jika melepasi EDD sedikit.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- OTHER TOOLS -->
+  <section class="other-tools">
+    <div class="container">
+      <div class="section-header">
+        <p class="section-tag">Tools lain</p>
+        <h2 class="section-title">Explore <em>Tools Percuma</em></h2>
+      </div>
+      <div class="tools-grid">
+        <a href="tracker.html" class="tool-card">
+          <span class="tool-icon">🤰</span>
+          <h4>Baby Tracker</h4>
+          <p>Ikuti perkembangan baby minggu demi minggu dengan lengkap.</p>
+          <span class="feature-link">Cuba sekarang →</span>
+        </a>
+        <a href="nama-bayi.html" class="tool-card">
+          <span class="tool-icon">✨</span>
+          <h4>Cari Nama Bayi</h4>
+          <p>500+ nama bayi dengan makna. Filter ikut bahasa dan jantina.</p>
+          <span class="feature-link">Terokai →</span>
+        </a>
+        <a href="../index.html#ebook" class="tool-card">
+          <span class="tool-icon">📖</span>
+          <h4>Ebook Percuma</h4>
+          <p>Download panduan persediaan kelahiran — percuma untuk semua ibu.</p>
+          <span class="feature-link">Download →</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-inner">
+        <div class="footer-brand">
+          <a href="../index.html" class="logo">
+            <span class="logo-icon">🌸</span>
+            <span class="logo-text">Mama<strong>Expert</strong></span>
+          </a>
+          <p>Panduan lengkap ibu & anak yang dipercayai di Malaysia.</p>
+        </div>
+        <div class="footer-links">
+          <div class="footer-col">
+            <h4>Tools</h4>
+            <a href="tracker.html">Baby Tracker</a>
+            <a href="nama-bayi.html">Nama Bayi</a>
+            <a href="kalkulator.html">Kalkulator EDD</a>
+          </div>
+          <div class="footer-col">
+            <h4>Konten</h4>
+            <a href="blog/">Artikel & Tips</a>
+            <a href="../index.html#ebook">Ebook Percuma</a>
+          </div>
+          <div class="footer-col">
+            <h4>Lain-lain</h4>
+            <a href="#">Tentang Kami</a>
+            <a href="#">Hubungi Kami</a>
+            <a href="#">Dasar Privasi</a>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>© 2025 MamaExpert. Dibuat dengan 💗 untuk ibu Malaysia.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../js/main.js"></script>
+  <script src="../js/kalkulator.js"></script>
+</body>
+</html>

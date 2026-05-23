@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="ms">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Baby tracker minggu kehamilan — ikuti perkembangan baby kau dari minggu 1 hingga 40 dengan tips penjagaan pakar." />
+  <title>Baby Tracker Minggu Kehamilan | MamaExpert</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../css/style.css" />
+  <link rel="stylesheet" href="../css/tracker.css" />
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav class="nav" id="nav">
+    <div class="nav-inner">
+      <a href="../index.html" class="logo">
+        <span class="logo-icon">🌸</span>
+        <span class="logo-text">Mama<strong>Expert</strong></span>
+      </a>
+      <ul class="nav-links">
+        <li><a href="tracker.html" style="color:var(--rose)">Baby Tracker</a></li>
+        <li><a href="nama-bayi.html">Nama Bayi</a></li>
+        <li><a href="kalkulator.html">Kalkulator EDD</a></li>
+        <li><a href="blog/">Blog</a></li>
+      </ul>
+      <a href="../index.html#ebook" class="btn btn-nav">Ebook Percuma</a>
+      <button class="burger" id="burger" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+    <div class="mobile-menu" id="mobileMenu">
+      <a href="tracker.html">Baby Tracker</a>
+      <a href="nama-bayi.html">Nama Bayi</a>
+      <a href="kalkulator.html">Kalkulator EDD</a>
+      <a href="blog/">Blog</a>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section class="tracker-hero">
+    <div class="container">
+      <div class="tracker-hero-inner">
+        <div class="tracker-hero-text">
+          <div class="hero-badge">🤰 Baby Tracker</div>
+          <h1>Perkembangan Baby<br /><em>Minggu demi Minggu</em></h1>
+          <p>Ikuti perjalanan mengandung kau dengan maklumat lengkap — saiz baby, perkembangan organ, perubahan badan ibu, dan tips penjagaan untuk setiap minggu.</p>
+        </div>
+        <div class="week-selector-card">
+          <label>Pilih minggu kehamilan kau:</label>
+          <div class="week-input-row">
+            <button class="week-btn" id="weekMinus" aria-label="Kurang minggu">−</button>
+            <div class="week-display" id="weekDisplay">20</div>
+            <button class="week-btn" id="weekPlus" aria-label="Tambah minggu">+</button>
+          </div>
+          <input type="range" id="weekSlider" min="1" max="40" value="20" class="week-slider" aria-label="Slider minggu kehamilan" />
+          <div class="week-range-labels">
+            <span>Minggu 1</span>
+            <span>Trimester 2</span>
+            <span>Minggu 40</span>
+          </div>
+          <div class="trimester-badges">
+            <span class="tri-badge" id="tri1">T1: 1–12</span>
+            <span class="tri-badge" id="tri2">T2: 13–26</span>
+            <span class="tri-badge" id="tri3">T3: 27–40</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TRACKER RESULT -->
+  <section class="tracker-result" id="trackerResult">
+    <div class="container">
+
+      <!-- Main card -->
+      <div class="result-main">
+        <div class="result-fruit-col">
+          <div class="fruit-circle" id="fruitCircle">
+            <span class="fruit-emoji" id="fruitEmoji">🌽</span>
+          </div>
+          <div class="fruit-label">Saiz seperti</div>
+          <div class="fruit-name" id="fruitName">Jagung</div>
+        </div>
+        <div class="result-info-col">
+          <div class="result-week-tag" id="resultWeekTag">Minggu 20</div>
+          <h2 class="result-title" id="resultTitle">Baby makin aktif bergerak!</h2>
+          <div class="result-metrics">
+            <div class="metric">
+              <span class="metric-icon">📏</span>
+              <div>
+                <div class="metric-label">Panjang</div>
+                <div class="metric-val" id="metricLength">~25 cm</div>
+              </div>
+            </div>
+            <div class="metric">
+              <span class="metric-icon">⚖️</span>
+              <div>
+                <div class="metric-label">Berat</div>
+                <div class="metric-val" id="metricWeight">~300g</div>
+              </div>
+            </div>
+            <div class="metric">
+              <span class="metric-icon">📅</span>
+              <div>
+                <div class="metric-label">Baki minggu</div>
+                <div class="metric-val" id="metricRemaining">20 minggu</div>
+              </div>
+            </div>
+          </div>
+          <div class="progress-section">
+            <div class="progress-label">
+              <span>Perjalanan kehamilan</span>
+              <span id="progressPct">50%</span>
+            </div>
+            <div class="progress-bar">
+              <div class="progress-fill" id="progressFill" style="width:50%"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Tabs -->
+      <div class="tabs">
+        <button class="tab active" data-tab="baby">👶 Perkembangan Baby</button>
+        <button class="tab" data-tab="mama">💗 Perubahan Ibu</button>
+        <button class="tab" data-tab="tips">💡 Tips & Nasihat</button>
+        <button class="tab" data-tab="checklist">✅ Checklist Minggu Ini</button>
+      </div>
+
+      <div class="tab-content" id="tabBaby">
+        <div class="content-card">
+          <h3>Perkembangan Baby Minggu Ini</h3>
+          <p id="babyDev">Baby kau sudah boleh mendengar bunyi dari luar perut. Organ-organ utama sudah terbentuk dan berfungsi. Pergerakan baby makin aktif dan kau mungkin sudah boleh rasa tendangan kecilnya.</p>
+          <div class="milestone-grid" id="milestoneGrid">
+            <div class="milestone-item">🧠 Otak berkembang pesat</div>
+            <div class="milestone-item">👂 Boleh dengar suara</div>
+            <div class="milestone-item">👁️ Kelopak mata terbentuk</div>
+            <div class="milestone-item">🦷 Tunas gigi terbentuk</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="tab-content hidden" id="tabMama">
+        <div class="content-card">
+          <h3>Perubahan Badan Ibu</h3>
+          <p id="mamaDev">Perut kau semakin membesar dan mungkin kau sudah mula rasa braxton hicks — kontraksi palsu yang normal. Badan kau sedang bekerja keras untuk memberi nutrisi kepada baby.</p>
+          <div class="milestone-grid" id="mamaGrid">
+            <div class="milestone-item">🤱 Payudara membesar</div>
+            <div class="milestone-item">💤 Mudah penat</div>
+            <div class="milestone-item">🍽️ Selera makan meningkat</div>
+            <div class="milestone-item">💛 Kulit bersinar</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="tab-content hidden" id="tabTips">
+        <div class="content-card">
+          <h3>Tips Penjagaan Minggu Ini</h3>
+          <div class="tips-list" id="tipsList">
+            <div class="tip-item">
+              <span class="tip-num">01</span>
+              <div>
+                <strong>Ajaklah baby bercakap</strong>
+                <p>Baby sudah boleh mendengar. Bercakap, nyanyikan lagu, atau bacakan al-Quran untuk stimulasi awal.</p>
+              </div>
+            </div>
+            <div class="tip-item">
+              <span class="tip-num">02</span>
+              <div>
+                <strong>Ambil gambar bump</strong>
+                <p>Rakam kenangan indah ini. Ambil gambar bump setiap minggu dari sudut yang sama untuk tengok perkembangan.</p>
+              </div>
+            </div>
+            <div class="tip-item">
+              <span class="tip-num">03</span>
+              <div>
+                <strong>Minum air yang cukup</strong>
+                <p>Sekurang-kurangnya 8 gelas air sehari untuk kekalkan cecair amniotik dan elak dehidrasi.</p>
+              </div>
+            </div>
+            <div class="tip-item">
+              <span class="tip-num">04</span>
+              <div>
+                <strong>Senaman ringan</strong>
+                <p>Berjalan kaki 20–30 minit sehari sangat baik untuk peredaran darah dan mood kau.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="tab-content hidden" id="tabChecklist">
+        <div class="content-card">
+          <h3>Checklist Minggu Ini</h3>
+          <div class="checklist-items" id="checklistItems">
+            <label class="check-item">
+              <input type="checkbox" /> Ambil vitamin folat & zat besi harian
+            </label>
+            <label class="check-item">
+              <input type="checkbox" /> Appointment check-up bulan ini
+            </label>
+            <label class="check-item">
+              <input type="checkbox" /> Ambil gambar bump minggu ini
+            </label>
+            <label class="check-item">
+              <input type="checkbox" /> Buat kajian tentang kelas antenatal
+            </label>
+            <label class="check-item">
+              <input type="checkbox" /> Berbincang nama bayi dengan pasangan
+            </label>
+            <label class="check-item">
+              <input type="checkbox" /> Baca artikel penyusuan susu ibu
+            </label>
+          </div>
+        </div>
+      </div>
+
+      <!-- Nav minggu -->
+      <div class="week-nav">
+        <button class="btn btn-ghost" id="prevWeek">← Minggu sebelum</button>
+        <span id="weekNavLabel">Minggu 20 dari 40</span>
+        <button class="btn btn-ghost" id="nextWeek">Minggu seterusnya →</button>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- AFFILIATE SECTION -->
+  <section class="tracker-affiliate">
+    <div class="container">
+      <div class="section-header">
+        <p class="section-tag">Produk disyorkan</p>
+        <h2 class="section-title">Barang untuk <em>Trimester Ini</em></h2>
+      </div>
+      <div class="affiliate-grid">
+        <div class="affiliate-card">
+          <div class="affiliate-emoji">🍊</div>
+          <h4>Vitamin Antenatal</h4>
+          <p>Supplement lengkap untuk ibu mengandung — folat, zat besi, kalsium & DHA.</p>
+          <a href="#" class="btn btn-primary" style="font-size:13px; padding:9px 18px;">Lihat di Shopee →</a>
+        </div>
+        <div class="affiliate-card">
+          <div class="affiliate-emoji">🛏️</div>
+          <h4>Bantal Ibu Mengandung</h4>
+          <p>Bantal berbentuk U untuk tidur lebih selesa sepanjang trimester kedua & ketiga.</p>
+          <a href="#" class="btn btn-primary" style="font-size:13px; padding:9px 18px;">Lihat di Lazada →</a>
+        </div>
+        <div class="affiliate-card">
+          <div class="affiliate-emoji">🧴</div>
+          <h4>Krim Anti Stretch Mark</h4>
+          <p>Sapu setiap hari dari trimester pertama untuk kurangkan kesan stretch mark.</p>
+          <a href="#" class="btn btn-primary" style="font-size:13px; padding:9px 18px;">Lihat di Shopee →</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-inner">
+        <div class="footer-brand">
+          <a href="../index.html" class="logo">
+            <span class="logo-icon">🌸</span>
+            <span class="logo-text">Mama<strong>Expert</strong></span>
+          </a>
+          <p>Panduan lengkap ibu & anak yang dipercayai di Malaysia.</p>
+        </div>
+        <div class="footer-links">
+          <div class="footer-col">
+            <h4>Tools</h4>
+            <a href="tracker.html">Baby Tracker</a>
+            <a href="nama-bayi.html">Nama Bayi</a>
+            <a href="kalkulator.html">Kalkulator EDD</a>
+          </div>
+          <div class="footer-col">
+            <h4>Konten</h4>
+            <a href="blog/">Artikel & Tips</a>
+            <a href="../index.html#ebook">Ebook Percuma</a>
+          </div>
+          <div class="footer-col">
+            <h4>Lain-lain</h4>
+            <a href="#">Tentang Kami</a>
+            <a href="#">Hubungi Kami</a>
+            <a href="#">Dasar Privasi</a>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>© 2025 MamaExpert. Dibuat dengan 💗 untuk ibu Malaysia.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../js/main.js"></script>
+  <script src="../js/tracker.js"></script>
+</body>
+</html>

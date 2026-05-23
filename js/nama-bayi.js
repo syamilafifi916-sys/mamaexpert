@@ -66,7 +66,7 @@ function buildDatabase() {
 // ── State ──
 let namaData = [];
 let filtered = [];
-let displayed = 24;
+let displayed = 48;
 let favourites = [];
 let activeGender = 'all';
 let activeLang = 'all';
@@ -153,7 +153,7 @@ function clearAll() {
 
 // ── Filters ──
 function applyFilters() {
-  displayed = 24;
+  displayed = 48;
   filtered = namaData.filter(n => {
     if (activeGender !== 'all' && n.jantina !== activeGender) return false;
     if (activeLang !== 'all' && n.bahasa !== activeLang) return false;
@@ -201,10 +201,16 @@ function renderGrid() {
       toggleFav(namaData[parseInt(btn.dataset.idx)].nama);
     });
   });
-  loadBtn.style.display = filtered.length > displayed ? 'inline-flex' : 'none';
+  const remaining = filtered.length - displayed;
+  if (remaining > 0) {
+    loadBtn.style.display = 'inline-flex';
+    loadBtn.textContent = `Papar ${Math.min(remaining, 48)} nama lagi (${remaining} berbaki)`;
+  } else {
+    loadBtn.style.display = 'none';
+  }
 }
 
-function loadMore() { displayed += 24; renderGrid(); }
+function loadMore() { displayed += 48; renderGrid(); }
 
 // ── Favourites ──
 function toggleFav(nama) {

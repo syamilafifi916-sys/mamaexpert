@@ -47,6 +47,15 @@ function buildDatabase() {
     [typeof namaScandinavianLelaki !== "undefined" ? namaScandinavianLelaki : [], "lelaki", "Scandinavian"],
     [typeof namaScandinavianPerempuan !== "undefined" ? namaScandinavianPerempuan : [], "perempuan", "Scandinavian"],
   ];
+  // tambahan data-4
+  (typeof namaTambahan !== "undefined" ? namaTambahan : []).forEach(n => db.push({ ...n }));
+  // tambahan data-5
+  (typeof namaMelayuPerempuanTambahan !== "undefined" ? namaMelayuPerempuanTambahan : []).forEach(n => db.push({ ...n }));
+  // tambahan data-6
+  (typeof namaMelayuLelakiTambahan !== "undefined" ? namaMelayuLelakiTambahan : []).forEach(n => db.push({ ...n }));
+  (typeof namaMelayuPerempuanTambahan !== "undefined" ? namaMelayuPerempuanTambahan : []).forEach(n => db.push({ ...n }));
+  (typeof namaTambahan !== "undefined" ? namaTambahan : []).forEach(n => db.push({ ...n }));
+
   sources.forEach(([arr, jantina, bahasa]) => {
     arr.forEach(n => db.push({ ...n, jantina, bahasa }));
   });
